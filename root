@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2041 루테빌라 세션 - 주서현 & 명세림 프로필</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0b12;
+            --card-bg: rgba(25, 20, 32, 0.75);
+            --card-border: rgba(212, 165, 116, 0.2);
+            --accent-burgundy: #802336;
+            --accent-rose: #d46a84;
+            --accent-gold: #d4a574;
+            --accent-blue: #4a7bb0;
+            --accent-green: #2e7d32;
+            --text-main: #f0e6ed;
+            --text-sub: #a095a5;
+            --nsfw-color: #ff4757;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(128, 35, 54, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(74, 123, 176, 0.1) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .badge-year {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-burgundy), #40101b);
+            color: var(--accent-gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Nav Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(30, 24, 38, 0.8);
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--accent-burgundy), #4a1525);
+            color: #fff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 15px rgba(128, 35, 54, 0.4);
+        }
+
+        /* Tab Contents */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Character Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .char-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .char-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .char-card.seohyun::before { background: linear-gradient(90deg, var(--accent-burgundy), var(--accent-rose)); }
+        .char-card.serim::before { background: linear-gradient(90deg, var(--accent-blue), #64b5f6); }
+
+        .char-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .char-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .char-sub {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-top: 2px;
+        }
+
+        .char-spec {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .spec-item span:first-child {
+            color: var(--text-sub);
+            margin-right: 5px;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-list {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .info-list li {
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .info-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-rose);
+        }
+
+        .tmi-toggle-btn {
+            background: transparent;
+            border: 1px dashed var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .tmi-toggle-btn:hover {
+            background: rgba(212, 165, 116, 0.1);
+        }
+
+        .tmi-box {
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #d1c4e9;
+            margin-top: 10px;
+            border-left: 3px solid var(--accent-rose);
+            line-height: 1.5;
+        }
+
+        .tmi-box.open {
+            display: block;
+        }
+
+        /* Timeline & Relations */
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 25px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--accent-burgundy);
+        }
+
+        .t-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .t-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+        }
+
+        .t-year {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .t-desc {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-top: 2px;
+        }
+
+        /* Image Code Generator Tab */
+        .generator-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filter-item label {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        select, input {
+            background: rgba(15, 11, 18, 0.9);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent-rose);
+        }
+
+        .code-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .code-btn {
+            background: rgba(35, 28, 45, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-btn:hover {
+            background: rgba(128, 35, 54, 0.3);
+            border-color: var(--accent-rose);
+        }
+
+        .code-btn.active {
+            background: var(--accent-burgundy);
+            border-color: var(--accent-gold);
+            color: #fff;
+        }
+
+        .code-num {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+        }
+
+        .nsfw-badge {
+            background: var(--nsfw-color);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 2px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
+        }
+
+        /* Result Panel */
+        .result-panel {
+            margin-top: 25px;
+            background: rgba(10, 8, 14, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .result-title {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .code-output {
+            background: #000;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #81c784;
+            word-break: break-all;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        .btn-action:active {
+            transform: scale(0.98);
+        }
+
+        .btn-copy {
+            background: var(--accent-burgundy);
+            color: #fff;
+        }
+
+        .btn-preview {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        .btn-full-preview {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        /* Category Headers in Generator */
+        .cat-title {
+            grid-column: 1 / -1;
+            font-size: 0.9rem;
+            color: var(--accent-rose);
+            font-weight: bold;
+            margin-top: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(212, 106, 132, 0.3);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 165, 116, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge-year"><i class="fa-regular fa-calendar-days"></i> START: 2041년 10월 1일</span>
+        <h1>명씨 가문의 잔영과 새로운 인연</h1>
+        <p>15년 전 멈춰버린 서현의 시간 앞에 찾아온 {{user}}의 이야기</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('profile')">
+            <i class="fa-solid fa-address-card"></i> 캐릭터 프로필 & 관계
+        </button>
+        <button class="tab-btn" onclick="switchTab('generator')">
+            <i class="fa-solid fa-image"></i> 상황 코드 & 미리보기 링크
+        </button>
+    </div>
+
+    <!-- TAB 1: Profiles & Settings -->
+    <div id="tab-profile" class="tab-content active">
+        <!-- Timeline Section -->
+        <div class="timeline-card">
+            <div class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> 세계관 타임라인 & 배경</div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-year">2021년 (세림 0살 / 신혼시절)</div>
+                    <div class="t-desc">소꿉친구였던 남편과 뜨거운 사랑 끝에 속도위반으로 결혼. 세림 출생.</div>
+                </div>
+                <div class="t-item">
+                    <div class="t-year">2026년 (세림 5살)</div>
+                    <div class="t-desc">사랑하던 남편이 갑작스러운 교통사고로 사망. "둘째를 만들자"는 약속을 가슴에 품은 채 멈춰선 서현.</div>
+                </div>
+                <div class="t-item">
+                    <div class="t-year">2041년 10월 1일 (현재 / 세림 20살)</div>
+                    <div class="t-desc">대학생 수석으로 성장한 딸 세림과 살아가는 서현 앞에, 죽은 남편을 꼭 닮은 {{user}}가 등장.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Cards Grid -->
+        <div class="cards-grid">
+            <!-- 주서현 Card -->
+            <div class="char-card seohyun">
+                <div class="char-header">
+                    <div>
+                        <div class="char-name">주서현 <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-sub);">(44세)</span></div>
+                        <div class="char-sub">피폐함 속 애정이 가득한 미망인</div>
+                    </div>
+                    <i class="fa-solid fa-heart" style="color: var(--accent-rose); font-size: 1.2rem;"></i>
+                </div>
+
+                <div class="char-spec">
+                    <div class="spec-item"><span>신체:</span> 165cm / 49kg</div>
+                    <div class="spec-item"><span>가슴:</span> E컵</div>
+                    <div class="spec-item" style="grid-column: span 2;"><span>외모:</span> 어두운 갈색 단발, 밝은 갈색 눈, 다크서클</div>
+                </div>
+
+                <div class="section-title"><i class="fa-solid fa-user-tag"></i> 성격 & 의상</div>
+                <ul class="info-list">
+                    <li><strong>성격:</strong> 나긋나긋하고 애정 가득함. {{user}}와 세림에게는 한없이 무장해제.</li>
+                    <li><strong>말투:</strong> 살짝 기운 없지만 상냥함이 넘침.</li>
+                    <li><strong>의상:</strong> 기본(크림색 오프숄더 스웨터 + 어두운 붉은색 스커트) / 유혹(검은색 란제리)</li>
+                </ul>
+
+                <div class="section-title"><i class="fa-solid fa-link"></i> {{user}}와의 관계</div>
+                <p style="font-size: 0.85rem; color: var(--text-main); line-height: 1.5;">
+                    떠나보낸 남편을 닮아 자꾸 눈이 가는 사람. 단순히 외모 때문만이 아니라 볼 때마다 가슴이 찌릿해짐.
+                </p>
+
+                <button class="tmi-toggle-btn" onclick="toggleTmi('tmi-seohyun')">
+                    <i class="fa-solid fa-lock"></i> 주서현 상세 TMI / 비하인드 보기
+                </button>
+                <div id="tmi-seohyun" class="tmi-box">
+                    • 신혼부터 남편 사망 전까지 매일 밤을 보냄.<br>
+                    • 15년 동안 남편 외의 다른 남자에게는 한 번도 달아오른 적이 없으며 재혼 생각도 안 함.<br>
+                    • 나이에 비해 피부가 좋으며 15년간 관계를 갖지 않음. 여전히 활발하게 배란 중.<br>
+                    • 딸을 키우느라 자위할 겨를도 없었으나, {{user}}를 만난 뒤 잊었던 감각이 되살아남.
+                </div>
+            </div>
+
+            <!-- 명세림 Card -->
+            <div class="char-card serim">
+                <div class="char-header">
+                    <div>
+                        <div class="char-name">명세림 <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-sub);">(20세)</span></div>
+                        <div class="char-sub">4년제 대학 고전문학과 1학년 수석</div>
+                    </div>
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--accent-blue); font-size: 1.2rem;"></i>
+                </div>
+
+                <div class="char-spec">
+                    <div class="spec-item"><span>신체:</span> 167cm / 51kg</div>
+                    <div class="spec-item"><span>가슴:</span> G컵</div>
+                    <div class="spec-item" style="grid-column: span 2;"><span>외모:</span> 밝은 갈색 장발(염색) + 밝은 갈색 눈, 바보털</div>
+                </div>
+
+                <div class="section-title"><i class="fa-solid fa-user-tag"></i> 성격 & 의상</div>
+                <ul class="info-list">
+                    <li><strong>성격:</strong> 사근사근하고 유함. 엄마를 깊이 사랑하고 존경함.</li>
+                    <li><strong>특징:</strong> 장학금과 알바로 본인 생활비를 버는 올곧고 의젓한 성격.</li>
+                    <li><strong>의상:</strong> 푸른 멜빵 드레스 + 하얀 셔츠</li>
+                </ul>
+
+                <div class="section-title"><i class="fa-solid fa-link"></i> {{user}}와의 관계</div>
+                <p style="font-size: 0.85rem; color: var(--text-main); line-height: 1.5;">
+                    {{user}}를 통해 얼굴조차 아련했던 아빠의 추억과 든든함을 느끼게 됨.
+                </p>
+
+                <button class="tmi-toggle-btn" onclick="toggleTmi('tmi-serim')">
+                    <i class="fa-solid fa-lock"></i> 명세림 상세 TMI / 비하인드 보기
+                </button>
+                <div id="tmi-serim" class="tmi-box">
+                    • 엄마(서현)를 고생시키지 않기 위해 힘든 내색 없이 열심히 살아옴.<br>
+                    • 남자친구를 사귀고 싶지만 시간이 없어 아쉬워함.<br>
+                    • 성욕이 강한 편이지만 숨기고 있음. 은근히 슴부심 있음.<br>
+                    • 원래 엄마와 같은 머리색이었으나 현재는 밝은 갈색으로 염색함.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: Code Generator & Preview -->
+    <div id="tab-generator" class="tab-content">
+        <div class="generator-card">
+            <div class="section-title" style="font-size: 1.1rem; margin-bottom: 15px;">
+                <i class="fa-solid fa-sliders"></i> 상황 코드 선택 및 마크다운 / 미리보기 생성
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label><i class="fa-solid fa-user"></i> 캐릭터 / 복장 선택</label>
+                    <select id="char-select" onchange="renderCodeList()">
+                        <option value="SU">주서현 (기본) [SU]</option>
+                        <option value="SE">명세림 (기본) [SE]</option>
+                        <option value="SU_BI">주서현 (비키니) [SU_BI]</option>
+                        <option value="SE_BI">명세림 (비키니) [SE_BI]</option>
+                        <option value="OY">3P / 모녀 (오야코동) [OY]</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label><i class="fa-solid fa-mars-venus"></i> User 성별 설정</label>
+                    <select id="gender-select" onchange="renderCodeList()">
+                        <option value="M">User = 남성 (♂️)</option>
+                        <option value="F">User = 여성 (♀️ 백합)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Code List Container -->
+            <div id="code-list-container" class="code-grid">
+                <!-- JS Inject -->
+            </div>
+
+            <!-- Result Panel -->
+            <div class="result-panel">
+                <div class="result-title"><i class="fa-solid fa-code"></i> 마크다운 이미지 코드</div>
+                <div class="code-output" id="output-markdown">코드를 선택해주세요.</div>
+
+                <div class="action-btns">
+                    <button class="btn-action btn-copy" onclick="copyMarkdown()">
+                        <i class="fa-solid fa-copy"></i> 마크다운 복사
+                    </button>
+                    <button class="btn-action btn-preview" onclick="openPreview()">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> 선택 이미지 미리보기
+                    </button>
+                    <button class="btn-action btn-full-preview" onclick="openFullPreview()">
+                        <i class="fa-solid fa-images"></i> 이미지 전체 미리보기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Data definition for situation codes
+    const normalCodes = [
+        { cat: "일상 & 기본", items: [
+            { id: 1, name: "기본" }, { id: 2, name: "기쁨" }, { id: 3, name: "슬픔" },
+            { id: 4, name: "놀람" }, { id: 5, name: "부끄" }, { id: 6, name: "화남" },
+            { id: 7, name: "쓰담" }, { id: 8, name: "감동" }, { id: 9, name: "응석" },
+            { id: 10, name: "식사" }, { id: 11, name: "키스" }, { id: 12, name: "요리" },
+            { id: 13, name: "수면" }, { id: 14, name: "샤워/씻기" }, { id: 15, name: "포옹" },
+            { id: 16, name: "임신" }, { id: 17, name: "궁금" }, { id: 18, name: "섹스하고 싶음" },
+            { id: 19, name: "나체" }, { id: 20, name: "섹스 유혹(란제리)" }
+        ]},
+        { cat: "NSFW 비삽입 (Male User)", maleOnly: true, items: [
+            { id: 21, name: "나체키스" }, { id: 22, name: "자지 보여주기" }, { id: 23, name: "보지벌리며 유혹" },
+            { id: 24, name: "가슴만지기" }, { id: 25, name: "유두 빨기" }, { id: 26, name: "보지 핑거링" },
+            { id: 27, name: "핑거링 절정" }, { id: 28, name: "보지핥기" }, { id: 29, name: "보지핥기 절정" },
+            { id: 30, name: "펠라치오" }, { id: 31, name: "펠라치오 사정" }, { id: 32, name: "파이즈리" },
+            { id: 33, name: "파이즈리 사정" }, { id: 34, name: "애닐링구스" }, { id: 35, name: "애닐링구스 사정" },
+            { id: 36, name: "풋잡" }, { id: 37, name: "풋잡 사정" }, { id: 38, name: "페이스싯팅" },
+            { id: 39, name: "페이스싯팅 사정" }
+        ]},
+        { cat: "NSFW 삽입 체위 (Male User)", maleOnly: true, items: [
+            { id: 40, name: "기승위" }, { id: 41, name: "기승위 사정" }, { id: 42, name: "정상위" },
+            { id: 43, name: "정상위 사정" }, { id: 44, name: "후배위" }, { id: 45, name: "후배위 사정" },
+            { id: 46, name: "풀넬슨" }, { id: 47, name: "풀넬슨 사정" }, { id: 48, name: "좌위" },
+            { id: 49, name: "좌위 사정" }, { id: 50, name: "측위" }, { id: 51, name: "측위 사정" },
+            { id: 52, name: "교배프레스" }, { id: 53, name: "교배프레스 사정" }, { id: 54, name: "아마존 프레스" },
+            { id: 55, name: "아마존 프레스 사정" }, { id: 56, name: "체위중 절정" }
+        ]},
+        { cat: "NSFW 섹스 후 & 기타", maleOnly: true, items: [
+            { id: 57, name: "섹스 후" }, { id: 58, name: "후희분수" }, { id: 59, name: "실신 1" },
+            { id: 60, name: "실신 2" }, { id: 61, name: "옆으로 누움" }, { id: 62, name: "누워 잠" },
+            { id: 63, name: "자위" }, { id: 64, name: "자위 사정" }
+        ]},
+        { cat: "NSFW 임신 & 육아", maleOnly: true, items: [
+            { id: 65, name: "임신중 가슴주무르기" }, { id: 66, name: "수유대딸" }, { id: 67, name: "수유대딸 사정" },
+            { id: 68, name: "임신중 정상위" }, { id: 69, name: "임신중 정상위 사정" }, { id: 70, name: "임신중 측위" },
+            { id: 71, name: "임신중 측위 사정" }, { id: 72, name: "임신중 후배위" }, { id: 73, name: "임신중 후배위 사정" },
+            { id: 74, name: "임신중 기승위" }, { id: 75, name: "임신중 기승위 사정" }, { id: 76, name: "아기 안고있음" },
+            { id: 77, name: "모유수유" }, { id: 78, name: "육아" }, { id: 79, name: "결혼" }
+        ]},
+        { cat: "NSFW 애널섹스", maleOnly: true, items: [
+            { id: 80, name: "애널 기승위" }, { id: 81, name: "애널 기승위 사정" }, { id: 82, name: "애널 후배위" },
+            { id: 83, name: "애널 후배위 사정" }, { id: 84, name: "애널 정상위" }, { id: 85, name: "애널 정상위 사정" },
+            { id: 86, name: "애널 측위" }, { id: 87, name: "애널 측위 사정" }, { id: 88, name: "애널섹스 후" }
+        ]},
+        { cat: "NSFW 백합 상황 (Female User)", femaleOnly: true, items: [
+            { id: 100, name: "나체백합키스" }, { id: 101, name: "가위치기" }, { id: 102, name: "가위치기 절정" },
+            { id: 103, name: "U가 C에게 커닐링구스" }, { id: 104, name: "U가 C에게 커닐 절정" },
+            { id: 105, name: "C가 U에게 커닐링구스" }, { id: 106, name: "C가 U에게 커닐 절정" },
+            { id: 107, name: "U가 C에게 핑거링" }, { id: 108, name: "U가 C에게 핑거링 절정" },
+            { id: 109, name: "C가 U에게 핑거링" }, { id: 110, name: "C가 U에게 핑거링 절정" },
+            { id: 111, name: "U가 C의 가슴 만지기" }, { id: 112, name: "C가 U의 가슴 만지기" },
+            { id: 113, name: "U가 C의 가슴 빨기" }, { id: 114, name: "C가 U의 가슴 빨기" }
+        ]}
+    ];
+
+    const bikiniCodes = [
+        { cat: "비키니 일상", items: [
+            { id: 1, name: "기본" }, { id: 2, name: "기쁨" }, { id: 3, name: "슬픔" },
+            { id: 4, name: "놀람" }, { id: 5, name: "부끄" }, { id: 6, name: "화남" },
+            { id: 7, name: "쓰담" }, { id: 8, name: "감동" }, { id: 9, name: "키스" },
+            { id: 10, name: "포옹" }, { id: 11, name: "궁금" }, { id: 12, name: "섹스하고 싶음" }
+        ]},
+        { cat: "비키니 NSFW (Male User)", maleOnly: true, items: [
+            { id: 13, name: "해변 키스" }, { id: 14, name: "자지 보여주기" }, { id: 15, name: "보지벌리며 유혹" },
+            { id: 16, name: "가슴만지기" }, { id: 17, name: "유두 빨기" }, { id: 18, name: "보지 핑거링" },
+            { id: 19, name: "핑거링 절정" }, { id: 20, name: "보지핥기" }, { id: 21, name: "보지핥기 절정" },
+            { id: 22, name: "펠라치오" }, { id: 23, name: "펠라치오 사정" }, { id: 24, name: "파이즈리" },
+            { id: 25, name: "파이즈리 사정" }, { id: 26, name: "기승위" }, { id: 27, name: "기승위 사정" },
+            { id: 28, name: "정상위" }, { id: 29, name: "정상위 사정" }, { id: 30, name: "풀넬슨" },
+            { id: 31, name: "풀넬슨 사정" }, { id: 32, name: "후배위" }, { id: 33, name: "후배위 사정" },
+            { id: 34, name: "좌위" }, { id: 35, name: "좌위 사정" }, { id: 36, name: "측위" },
+            { id: 37, name: "측위 사정" }, { id: 38, name: "교배프레스" }, { id: 39, name: "교배프레스 사정" },
+            { id: 40, name: "아마존 프레스" }, { id: 41, name: "아마존 프레스 사정" }, { id: 42, name: "체위중 절정" },
+            { id: 43, name: "섹스 후" }, { id: 44, name: "후희분수" }, { id: 45, name: "섹스 후 실신" }
+        ]},
+        { cat: "비키니 애널섹스", maleOnly: true, items: [
+            { id: 46, name: "애널 기승위" }, { id: 47, name: "애널 기승위 사정" }, { id: 48, name: "애널 후배위" },
+            { id: 49, name: "애널 후배위 사정" }, { id: 50, name: "애널 정상위" }, { id: 51, name: "애널 정상위 사정" },
+            { id: 52, name: "애널 측위" }, { id: 53, name: "애널 측위 사정" }, { id: 54, name: "애널섹스 후" }
+        ]},
+        { cat: "비키니 백합 (Female User)", femaleOnly: true, items: [
+            { id: 100, name: "나체백합키스" }, { id: 101, name: "가위치기" }, { id: 102, name: "가위치기 절정" },
+            { id: 103, name: "U가 C에게 커닐링구스" }, { id: 104, name: "U가 C에게 커닐 절정" },
+            { id: 105, name: "C가 U에게 커닐링구스" }, { id: 106, name: "C가 U에게 커닐 절정" },
+            { id: 107, name: "U가 C에게 핑거링" }, { id: 108, name: "U가 C에게 핑거링 절정" },
+            { id: 109, name: "C가 U에게 핑거링" }, { id: 110, name: "C가 U에게 핑거링 절정" },
+            { id: 111, name: "U가 C의 가슴 만지기" }, { id: 112, name: "C가 U의 가슴 만지기" },
+            { id: 113, name: "U가 C의 가슴 빨기" }, { id: 114, name: "C가 U의 가슴 빨기" }
+        ]}
+    ];
+
+    const oyCodes = [
+        { cat: "3P 일상 & 데이트", items: [
+            { id: 1, name: "함께 식사" }, { id: 2, name: "함께 피크닉" }, { id: 3, name: "함께 마중" },
+            { id: 4, name: "놀이공원" }, { id: 5, name: "롤러코스터" }, { id: 6, name: "회전목마" },
+            { id: 7, name: "관람차" }, { id: 8, name: "영화관" }, { id: 9, name: "아쿠아리움" },
+            { id: 10, name: "함께 바다" }, { id: 11, name: "물놀이" }, { id: 12, name: "비치발리볼" }
+        ]},
+        { cat: "3P NSFW (모녀)", items: [
+            { id: 13, name: "더블펠라치오" }, { id: 14, name: "더블펠라 사정" }, { id: 15, name: "더블파이즈리" },
+            { id: 16, name: "더블파이즈리 사정" }, { id: 17, name: "샌드위치(서현펠라/세림림잡)" },
+            { id: 18, name: "샌드위치1 사정" }, { id: 19, name: "샌드위치(세림펠라/서현림잡)" },
+            { id: 20, name: "샌드위치2 사정" }, { id: 21, name: "대딸" }, { id: 22, name: "대딸 사정" },
+            { id: 23, name: "서현섹스+세림애무보조" }, { id: 24, name: "서현섹스 사정" },
+            { id: 25, name: "세림섹스+서현애무보조" }, { id: 26, name: "세림섹스 사정" },
+            { id: 27, name: "더블 핑거링" }, { id: 28, name: "더블 핑거링 절정" }, { id: 29, name: "모녀 섹스 후" },
+            { id: 30, name: "모녀키스" }, { id: 31, name: "기승위(서현)+페이스싯(세림)" },
+            { id: 32, name: "기승위1 사정" }, { id: 33, name: "기승위(세림)+페이스싯(서현)" },
+            { id: 34, name: "기승위2 사정" }
+        ]}
+    ];
+
+    let currentSelectedCode = null;
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        if (tabId === 'profile') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.getElementById('tab-profile').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.getElementById('tab-generator').classList.add('active');
+            renderCodeList();
+        }
+    }
+
+    function toggleTmi(id) {
+        const box = document.getElementById(id);
+        box.classList.toggle('open');
+    }
+
+    function renderCodeList() {
+        const charVal = document.getElementById('char-select').value;
+        const genderVal = document.getElementById('gender-select').value;
+        const container = document.getElementById('code-list-container');
+        container.innerHTML = '';
+
+        let dataset = [];
+        if (charVal === 'OY') dataset = oyCodes;
+        else if (charVal.includes('BI')) dataset = bikiniCodes;
+        else dataset = normalCodes;
+
+        dataset.forEach(group => {
+            if (group.maleOnly && genderVal !== 'M') return;
+            if (group.femaleOnly && genderVal !== 'F') return;
+
+            const catEl = document.createElement('div');
+            catEl.className = 'cat-title';
+            catEl.innerText = group.cat;
+            container.appendChild(catEl);
+
+            group.items.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'code-btn';
+                if (currentSelectedCode === item.id) btn.classList.add('active');
+
+                const isNsfw = item.id >= 20 || group.cat.includes('NSFW');
+                btn.innerHTML = `
+                    <span>${item.name} ${isNsfw ? '<span class="nsfw-badge">19</span>' : ''}</span>
+                    <span class="code-num">#${item.id}</span>
+                `;
+                btn.onclick = () => selectCode(item.id, btn);
+                container.appendChild(btn);
+            });
+        });
+    }
+
+    function selectCode(codeId, btnEl) {
+        document.querySelectorAll('.code-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+        currentSelectedCode = codeId;
+
+        const charVal = document.getElementById('char-select').value;
+        const mdText = `![](https://itimg.kr/2700/OYA/${charVal}/${codeId}.webp)`;
+        document.getElementById('output-markdown').innerText = mdText;
+    }
+
+    function copyMarkdown() {
+        const text = document.getElementById('output-markdown').innerText;
+        if (!currentSelectedCode) {
+            alert('먼저 상황 코드를 선택해주세요!');
+            return;
+        }
+        navigator.clipboard.writeText(text).then(() => {
+            alert('마크다운 코드가 클립보드에 복사되었습니다!');
+        });
+    }
+
+    function openPreview() {
+        const charVal = document.getElementById('char-select').value;
+        if (!currentSelectedCode) {
+            alert('먼저 상황 코드를 선택해주세요!');
+            return;
+        }
+        const imgUrl = `https://itimg.kr/2700/OYA/${charVal}/${currentSelectedCode}.webp`;
+        const encodedImg = encodeURIComponent(imgUrl);
+        const previewUrl = `https://si-ran.com/preview?t=${encodedImg}&c=SU%7ESE%7ESU_BI%7ESE_BI%7EOY&l=X&s=1..88%7E100..114`;
+        
+        window.open(previewUrl, '_blank');
+    }
+
+    function openFullPreview() {
+        const fullPreviewUrl = "https://si-ran.com/preview?t=https%3A%2F%2Fitimg.kr%2F2700%2FOYA%2F%EC%BA%90%EB%A6%AD%ED%84%B0%2F%EC%83%81%ED%99%A9.webp&c=SU%7ESE%7ESU_BI%7ESE_BI%7EOY&l=X&s=1..88%7E100..114";
+        window.open(fullPreviewUrl, '_blank');
+    }
+
+    // Init first load
+    renderCodeList();
+</script>
+</body>
+</html>
