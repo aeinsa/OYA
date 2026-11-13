@@ -647,6 +647,8 @@
                         <option value="SE">명세림 (기본) [SE]</option>
                         <option value="SU_BI">주서현 (비키니) [SU_BI]</option>
                         <option value="SE_BI">명세림 (비키니) [SE_BI]</option>
+                        <option value="SU_BU">주서현 (비키니) [SU_BI]</option>
+                        <option value="SE_BU">명세림 (비키니) [SE_BI]</option>
                         <option value="OY">3P / 모녀 (오야코동) [OY]</option>
                     </select>
                 </div>
@@ -778,7 +780,41 @@
             { id: 113, name: "U가 C의 가슴 빨기" }, { id: 114, name: "C가 U의 가슴 빨기" }
         ]}
     ];
-
+const bunnyCodes = [
+        { cat: "버니걸 일상", items: [
+            { id: 1, name: "기본" }, { id: 2, name: "기쁨" }, { id: 3, name: "슬픔" },
+            { id: 4, name: "놀람" }, { id: 5, name: "부끄" }, { id: 6, name: "화남" },
+            { id: 7, name: "쓰담" }, { id: 8, name: "감동" }, { id: 9, name: "키스" },
+            { id: 10, name: "포옹" }, { id: 11, name: "궁금" }, { id: 12, name: "섹스하고 싶음" }
+        ]},
+        { cat: "버니걸 NSFW (Male User)", maleOnly: true, items: [
+            { id: 13, name: "해변 키스" }, { id: 14, name: "자지 보여주기" }, { id: 15, name: "보지벌리며 유혹" },
+            { id: 16, name: "가슴만지기" }, { id: 17, name: "유두 빨기" }, { id: 18, name: "보지 핑거링" },
+            { id: 19, name: "핑거링 절정" }, { id: 20, name: "보지핥기" }, { id: 21, name: "보지핥기 절정" },
+            { id: 22, name: "펠라치오" }, { id: 23, name: "펠라치오 사정" }, { id: 24, name: "파이즈리" },
+            { id: 25, name: "파이즈리 사정" }, { id: 26, name: "기승위" }, { id: 27, name: "기승위 사정" },
+            { id: 28, name: "정상위" }, { id: 29, name: "정상위 사정" }, { id: 30, name: "풀넬슨" },
+            { id: 31, name: "풀넬슨 사정" }, { id: 32, name: "후배위" }, { id: 33, name: "후배위 사정" },
+            { id: 34, name: "좌위" }, { id: 35, name: "좌위 사정" }, { id: 36, name: "측위" },
+            { id: 37, name: "측위 사정" }, { id: 38, name: "교배프레스" }, { id: 39, name: "교배프레스 사정" },
+            { id: 40, name: "아마존 프레스" }, { id: 41, name: "아마존 프레스 사정" }, { id: 42, name: "체위중 절정" },
+            { id: 43, name: "섹스 후" }, { id: 44, name: "후희분수" }, { id: 45, name: "섹스 후 실신" }
+        ]},
+        { cat: "버니걸 애널섹스", maleOnly: true, items: [
+            { id: 46, name: "애널 기승위" }, { id: 47, name: "애널 기승위 사정" }, { id: 48, name: "애널 후배위" },
+            { id: 49, name: "애널 후배위 사정" }, { id: 50, name: "애널 정상위" }, { id: 51, name: "애널 정상위 사정" },
+            { id: 52, name: "애널 측위" }, { id: 53, name: "애널 측위 사정" }, { id: 54, name: "애널섹스 후" }
+        ]},
+        { cat: "버니걸 백합 (Female User)", femaleOnly: true, items: [
+            { id: 100, name: "나체백합키스" }, { id: 101, name: "가위치기" }, { id: 102, name: "가위치기 절정" },
+            { id: 103, name: "U가 C에게 커닐링구스" }, { id: 104, name: "U가 C에게 커닐 절정" },
+            { id: 105, name: "C가 U에게 커닐링구스" }, { id: 106, name: "C가 U에게 커닐 절정" },
+            { id: 107, name: "U가 C에게 핑거링" }, { id: 108, name: "U가 C에게 핑거링 절정" },
+            { id: 109, name: "C가 U에게 핑거링" }, { id: 110, name: "C가 U에게 핑거링 절정" },
+            { id: 111, name: "U가 C의 가슴 만지기" }, { id: 112, name: "C가 U의 가슴 만지기" },
+            { id: 113, name: "U가 C의 가슴 빨기" }, { id: 114, name: "C가 U의 가슴 빨기" }
+        ]}
+    ];
     const oyCodes = [
         { cat: "3P 일상 & 데이트", items: [
             { id: 1, name: "함께 식사" }, { id: 2, name: "함께 피크닉" }, { id: 3, name: "함께 마중" },
@@ -830,6 +866,7 @@
         let dataset = [];
         if (charVal === 'OY') dataset = oyCodes;
         else if (charVal.includes('BI')) dataset = bikiniCodes;
+        else if (charVal.includes('BU')) dataset = bunnyCodes;
         else dataset = normalCodes;
 
         dataset.forEach(group => {
@@ -892,7 +929,7 @@
     }
 
     function openFullPreview() {
-        const fullPreviewUrl = "https://si-ran.com/preview?t=https%3A%2F%2Fitimg.kr%2F2700%2FOYA%2F%EC%BA%90%EB%A6%AD%ED%84%B0%2F%EC%83%81%ED%99%A9.webp&c=SU%7ESE%7ESU_BI%7ESE_BI%7EOY&l=X&s=1..88%7E100..114";
+        const fullPreviewUrl = "https://si-ran.com/preview?t=https%3A%2F%2Fitimg.kr%2F2700%2FOYA%2F%EC%BA%90%EB%A6%AD%ED%84%B0%2F%EC%83%81%ED%99%A9.webp&c=SU%7ESE%7ESU_BI%7ESE_BI%7ESU_BU%7ESE_BU%7EOY&l=X&s=1..88%7E100..114";
         window.open(fullPreviewUrl, '_blank');
     }
 
